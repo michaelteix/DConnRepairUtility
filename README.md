@@ -1,0 +1,2 @@
+# DConnRepairUtility
+This is a simply utility designed to run on android 9 (pie) and up. This utility launches a daemon to run and check your data connection speed. This speed is checked at the interval you specify in the app, and when the speed drops below a specified threshold, will run the data repair service. DISCLAIMER: This tool may cause you to temporarily loose connection to your carrier, resulting in lost of signal.
