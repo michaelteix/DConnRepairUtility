@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DConn Repair Utility</string>
+    <string name="last_connection_name">Last Connection Name:</string>
+    <string name="last_down_speed">Last Down Speed:</string>
+    <string name="daemon_active">Daemon Active:</string>
+    <string name="time_interval">Time Interval:</string>
+    <string name="daemon_settings">Daemon Settings</string>
+    <string name="threshold">Threshold:</string>
+    <string name="mins">mins</string>
+    <string name="Time_Interval_Hint">10</string>
+    <string name="Threshold_Hint">1.5</string>
+    <string name="mb_Label">Mb/s</string>
+    <string name="editButtonLabel">Edit</string>
+    <string name="startDaemonButtonLabel">Start Daemon</string>
+    <string name="stopDaemonButtonLabel">Stop Daemon</string>
+    <string name="LogFilesButtonLabel">Log Files</string>
+</resources>

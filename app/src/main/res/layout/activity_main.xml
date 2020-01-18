@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/LastConnectionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/last_connection_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/LastConnectionValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/LastConnectionLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/LastConnectionLabel"
+        app:layout_constraintTop_toTopOf="@+id/LastConnectionLabel" />
+
+    <TextView
+        android:id="@+id/DownSpeedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/last_down_speed"
+        app:layout_constraintEnd_toEndOf="@+id/LastConnectionLabel"
+        app:layout_constraintTop_toBottomOf="@+id/LastConnectionLabel" />
+
+    <TextView
+        android:id="@+id/DownSpeedValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/DownSpeedLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/LastConnectionLabel"
+        app:layout_constraintTop_toTopOf="@+id/DownSpeedLabel" />
+
+    <TextView
+        android:id="@+id/DaemonActiveLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/daemon_active"
+        app:layout_constraintEnd_toEndOf="@+id/DownSpeedLabel"
+        app:layout_constraintTop_toBottomOf="@+id/DownSpeedLabel" />
+
+    <RadioButton
+        android:id="@+id/isDaemonActiveLight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:buttonTint="@color/colorRedStatusLight"
+        app:layout_constraintBaseline_toBaselineOf="@+id/DaemonActiveLabel"
+        app:layout_constraintStart_toEndOf="@+id/DaemonActiveLabel" />
+
+    <TextView
+        android:id="@+id/TimeIntervalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:labelFor="@id/TimeIntervalValue"
+        android:text="@string/time_interval"
+        app:layout_constraintEnd_toEndOf="@+id/DaemonActiveLabel"
+        app:layout_constraintTop_toBottomOf="@+id/DaemonSettingsLabel" />
+
+    <TextView
+        android:id="@+id/DaemonSettingsLabel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="@string/daemon_settings"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DaemonActiveLabel" />
+
+    <EditText
+        android:id="@+id/TimeIntervalValue"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:autofillHints="@string/Time_Interval_Hint"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/TimeIntervalLabel"
+        app:layout_constraintStart_toEndOf="@+id/TimeIntervalLabel"
+        app:layout_constraintTop_toTopOf="@+id/TimeIntervalLabel" />
+
+    <TextView
+        android:id="@+id/ThresholdLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:labelFor="@id/ThresholdValue"
+        android:text="@string/threshold"
+        app:layout_constraintEnd_toEndOf="@+id/TimeIntervalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/TimeIntervalLabel" />
+
+    <EditText
+        android:id="@+id/ThresholdValue"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:autofillHints="@string/Threshold_Hint"
+        android:inputType="numberDecimal"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/ThresholdLabel"
+        app:layout_constraintStart_toEndOf="@+id/ThresholdLabel"
+        app:layout_constraintTop_toTopOf="@+id/ThresholdLabel" />
+
+    <TextView
+        android:id="@+id/MinsLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/mins"
+        app:layout_constraintBottom_toBottomOf="@+id/TimeIntervalLabel"
+        app:layout_constraintStart_toEndOf="@+id/TimeIntervalValue"
+        app:layout_constraintTop_toTopOf="@+id/TimeIntervalLabel"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/MbLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/mb_Label"
+        app:layout_constraintBottom_toBottomOf="@+id/ThresholdLabel"
+        app:layout_constraintStart_toEndOf="@+id/ThresholdValue"
+        app:layout_constraintTop_toTopOf="@+id/ThresholdLabel" />
+
+    <Button
+        android:id="@+id/EditButton"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/editButtonLabel"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/ThresholdValue"
+        app:layout_constraintStart_toStartOf="@+id/ThresholdValue"
+        app:layout_constraintTop_toBottomOf="@+id/ThresholdLabel" />
+
+    <Button
+        android:id="@+id/StartDaemonButton"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="@string/startDaemonButtonLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/StopDaemonButton"
+        app:layout_constraintEnd_toStartOf="@+id/StopDaemonButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/StopDaemonButton" />
+
+    <Button
+        android:id="@+id/StopDaemonButton"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="96dp"
+        android:text="@string/stopDaemonButtonLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EditButton" />
+
+    <Button
+        android:id="@+id/LogFileButton"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="@string/LogFilesButtonLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/StopDaemonButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/StopDaemonButton"
+        app:layout_constraintTop_toTopOf="@+id/StopDaemonButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
