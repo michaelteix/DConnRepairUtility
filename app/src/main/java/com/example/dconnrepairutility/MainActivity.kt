@@ -1,6 +1,7 @@
 package com.example.dconnrepairutility
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     var lastConnectionName = "None"
     var lastConnectionSpeed = 0
     var isActive = false
-    var timeInterval = 30
+    var timeInterval = 5
     var downloadThreshold = 2
     private var job: Job? = null
 
@@ -21,17 +22,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        d("daemon", "Main thread started with ThreadId: " + Thread.currentThread().id)
         StopDaemonButton.isEnabled = false
         LastConnectionValue.setText("Null")
         DownSpeedValue.setText("Null")
+
         TimeIntervalValue.setText(timeInterval.toString())
         ThresholdValue.setText(downloadThreshold.toString())
+
+        val speedKeyListener = ThresholdValue.keyListener
+        val timeKeyListener = TimeIntervalValue.keyListener
+
+        LastConnectionValue.keyListener = null
+        DownSpeedValue.keyListener = null
+        TimeIntervalValue.keyListener = null
+        ThresholdValue.keyListener = null
 
         StartDaemonButton.setOnClickListener {
             isActive = true
             isDaemonActiveLight.buttonTintList = getColorStateList(R.color.colorGreenStart)
             StartDaemonButton.isEnabled = false
             StopDaemonButton.isEnabled = true
+            TimeIntervalValue.keyListener = null
+            ThresholdValue.keyListener = null
+            EditButton.isEnabled = false
 
             job = GlobalScope.launch(Dispatchers.IO) {
                 d("daemon", "Daemon started with ThreadId: " + Thread.currentThread().id)
@@ -54,14 +68,19 @@ class MainActivity : AppCompatActivity() {
                     catch (e: Exception)
                     {
                         d("daemon", "Could not write string: " + lastConnectionName)
+                        d("daemon", "Exception: " + e.message)
                     }
                     DownSpeedValue.setText(lastConnectionSpeed.toString())
 
                     // If connection below the threshold run repair service
-                    if(lastConnectionSpeed < downloadThreshold * 1000)
+                    if(lastConnectionSpeed < (downloadThreshold * 1000))
                     {
+                        d("daemon", "Running repair service after speed tested at: " + lastConnectionSpeed.toString())
                         // Open dialer and run code *#*#34963#*#*
-                            // Alternatively run repair service and grab statistics from it
+                        // startActivity( Intent( Intent.ACTION_DIAL, Uri.fromParts( "tel", "*#*#34963#*#*", null ) ) )
+
+                        // Alternatively run repair service and grab statistics from it
+
                     }
 
                     delay(timeInterval.toLong() * 60000)
@@ -74,6 +93,9 @@ class MainActivity : AppCompatActivity() {
             StopDaemonButton.isEnabled = false
             StartDaemonButton.isEnabled = true
             isDaemonActiveLight.buttonTintList = getColorStateList(R.color.colorRedStatusLight)
+            TimeIntervalValue.keyListener = timeKeyListener
+            ThresholdValue.keyListener = speedKeyListener
+            EditButton.isEnabled = true
             job!!.cancel()
         }
 
@@ -82,7 +104,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         EditButton.setOnClickListener {
-
+            if(!isActive)
+            {
+                if(TimeIntervalValue.keyListener == null)
+                {
+                    TimeIntervalValue.keyListener = timeKeyListener
+                    ThresholdValue.keyListener = speedKeyListener
+                    EditButton.text = "Save"
+                }
+                else
+                {
+                    TimeIntervalValue.keyListener = null
+                    ThresholdValue.keyListener = null
+                    EditButton.text = "Edit"
+                }
+            }
         }
     }
 }

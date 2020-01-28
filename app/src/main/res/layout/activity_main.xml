@@ -124,6 +124,8 @@
         android:layout_marginStart="16dp"
         android:autofillHints="@string/Time_Interval_Hint"
         android:inputType="numberDecimal"
+        android:textAlignment="textEnd"
+        android:editable="false"
         app:layout_constraintBottom_toBottomOf="@+id/TimeIntervalLabel"
         app:layout_constraintStart_toEndOf="@+id/TimeIntervalLabel"
         app:layout_constraintTop_toTopOf="@+id/TimeIntervalLabel" />
@@ -173,7 +175,7 @@
 
     <Button
         android:id="@+id/EditButton"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:text="@string/editButtonLabel"
@@ -200,6 +202,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="96dp"
         android:text="@string/stopDaemonButtonLabel"
+        android:backgroundTint="@color/colorRedStatusLight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EditButton" />
